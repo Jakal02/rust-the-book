@@ -14,6 +14,16 @@ impl Rectangle{
         self.width > other.width && self.height > other.height
     }
 }
+
+impl Rectangle{
+    fn square(size: u32) -> Self {
+        Self{
+            width: size,
+            height: size
+        }
+    }
+}
+
 fn main() {
     println!("Print the area of a rectangle.");
     let rect1: Rectangle = Rectangle {
@@ -36,4 +46,6 @@ fn main() {
     println!("Can rect1 fit rect1? {}", rect1.can_hold(&rect1));
     println!("Can rect2 fit rect1? {}", rect2.can_hold(&rect1));
 
+    let square = Rectangle::square(34);
+    println!("The dimensions of this square is {:?}", square);
 }
