@@ -23,6 +23,10 @@ fn main() {
             Err(_) => continue,
         };
 
+        if guess < 1 || guess > 10 {
+            println!("Your guess must be between 1 and 10.");
+            continue;
+        }
         println!("You guessed: {}!", guess);
 
         match guess.cmp(&secret_number) {
