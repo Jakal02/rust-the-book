@@ -2,6 +2,9 @@ use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
 
+pub mod guess;
+use guess::Guess;
+
 fn main() {
     println!("Guess the number!");
 
@@ -22,14 +25,11 @@ fn main() {
             Ok(num) => num,
             Err(_) => continue,
         };
+        let guess = Guess::new(guess);
 
-        if guess < 1 || guess > 10 {
-            println!("Your guess must be between 1 and 10.");
-            continue;
-        }
-        println!("You guessed: {}!", guess);
+        println!("You guessed: {}!", guess.value());
 
-        match guess.cmp(&secret_number) {
+        match guess.value().cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
